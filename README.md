@@ -25,7 +25,7 @@ ImageNet은 가변 해상도 이미지로 구성되는 반면, 우리 시스템�
 ### 3.4 Overlapping Pooling
 해당 논문 이전에는 pooling을 진행할 경우 영역이 겹치지 않는것이 일반적이었으나 구간을 겹치면서 pooling을 할경우 Top-1/Top-5에서 error rate가 각각 0.4%, 0.3% 감소함을 확인했다.
 ### 3.5 Overall Architecture
-<img src='./img2.png' width=600><br>
+<img src='./img2.png' width=750><br>
  - input_shape : (224, 224, 3)
  - conv1 : kernel_size = (11, 11), stride = 4
  - maxpooling1 : kernel_size = (3, 3), stride = 2
@@ -41,6 +41,22 @@ ImageNet은 가변 해상도 이미지로 구성되는 반면, 우리 시스템�
 <br>
 
 ## 4 Reducing Overfitting
+해당 논문의 아키텍처는 6천만개의 매개변수를 가지고 있다. 그러므로 과적합을 막기위해 아래의 두가지 방법을 제시한다.
 ### 4.1 Data Augmentation
+ - 256*256의 이미지를 224*224로 자르고 수평 반전을 통해 데이터셋을 2048배 확장
+ - RGB 채널의 강도를 조절. pca eigenvector에서 N(0,0.1)인 정규분포에서 추출한 랜덤값을 곱해서 색을 조정
+ - TOP-1 오차율이 1% 이상 감소
 ### 4.2 Dropout
+ - 논문에서는 학습을 두배로 늘리는 대신 과적합 방지를 위해 첫번째와 두번째 dense-layer에서 0.5의 드랍아웃을 주어 과적합을 줄였다.
 ## 5 Details of learning
+ - Batch-size = 128
+ - SGD - momentum 0.9, weight decay 0.0005<br>
+ <img src='./img3.png' width=450><br>
+ - 두 번째, 네 번째, 다섯 번째 컨볼루션 레이어와 fully-connected-layer 의 hidden-layer에서 뉴런 편향을 상수 1로 초기화했다. 이 초기화는 ReLU에 긍정적인 입력을 제공하여 학습의 초기 단계를 가속화한다.
+- 학습률은 개선이 이루어지지 않을 경우 수동으로 1/10로 줄여나갔고 초기값은 0.01이었으며 학습하는동안 총 3번을 줄였다.
+
+## 6. Results
+논문에 표시된 결과는 아래와 같다.
+<br>
+ <img src='./img4.png' width=450><br>
+ <img src='./img5.png' width=450><br>
