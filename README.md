@@ -27,13 +27,13 @@ ImageNet은 가변 해상도 이미지로 구성되는 반면, 우리 시스템�
 ### 3.5 Overall Architecture
 <img src='./img2.png' width=750><br>
  - input_shape : (224, 224, 3)
- - conv1 : kernel_size = (11, 11), stride = 4
+ - conv1 : kernel_size = (11, 11), stride = 4, padding = 2
  - maxpooling1 : kernel_size = (3, 3), stride = 2
- - conv2 : kernel_size = (5, 5), stride = 4
+ - conv2 : kernel_size = (5, 5), padding = 2
  - maxpooling2 : kernel_size = (3, 3), stride = 2
- - conv3 : kernel_size = (3, 3), stride = 4
- - conv4 : kernel_size = (3, 3), stride = 4
- - conv5 : kernel_size = (3, 3), stride = 4
+ - conv3 : kernel_size = (3, 3), stride = 1, padding = 1
+ - conv4 : kernel_size = (3, 3), stride = 1, padding = 1
+ - conv5 : kernel_size = (3, 3), stride = 1, padding = 1
  - maxpooling4 : kernel_size = (3, 3), stride = 2
  - fully-connected layers : 4096
  - fully-connected layers : 4096
