@@ -1,6 +1,6 @@
 # 논문리뷰(AlexNet)
 ## 리뷰할 논문 <br>: ImageNet Classification with Deep Convolutional Neural Networks
-해당 논문은 레파지토리에 첨부했으니 참고하실 분들은 참고하시면 될 것 같습니다.
+논문 출처 : https://papers.nips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf
 <br><br>
 
 ## 1. Introduction
